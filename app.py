@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from werkzeug.utils import secure_filename
 import os
 from model import CarClassifier
@@ -37,7 +37,6 @@ def upload_file():
         predicted_label = car_classifier.predict(file_path)
 
         return render_template('result.html', filename=filename, predicted_label=predicted_label)
-
 
 @app.route('/predict', methods=['POST'])
 def predict():

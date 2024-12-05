@@ -2,6 +2,7 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 
+
 class CarClassifier:
     def __init__(self, model_path, num_classes):
         self.model = tf.keras.models.load_model(model_path)
@@ -18,4 +19,6 @@ class CarClassifier:
         img_array = np.expand_dims(img_array, axis=0)
         predictions = self.model.predict(img_array)
         predicted_class = np.argmax(predictions, axis=1)
-        return self.class_indices[predicted_class[0]]
+
+        # Убедимся, что predicted_class содержит целый номер для индексации
+        return self.class_indices[predicted_class[0].item()]
