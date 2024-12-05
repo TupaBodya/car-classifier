@@ -15,10 +15,9 @@ class CarClassifier:
     def predict(self, image_path):
         # Загружаем изображение
         img = load_img(image_path, target_size=(224, 224))
-        img_array = img_to_array(img) / 255.0
-        img_array = np.expand_dims(img_array, axis=0)
+        img_array = img_to_array(img) / 255.0  # Нормализация пикселей
+        img_array = np.expand_dims(img_array, axis=0)  # Добавление размерности для батча
         predictions = self.model.predict(img_array)
-        predicted_class = np.argmax(predictions, axis=1)
+        predicted_class = np.argmax(predictions, axis=1)[0]  # Получаем индекс класса
 
-        # Убедимся, что predicted_class содержит целый номер для индексации
-        return self.class_indices[predicted_class[0].item()]
+        return self.class_indices[predicted_class]

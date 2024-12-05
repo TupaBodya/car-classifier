@@ -10,7 +10,7 @@ UPLOAD_FOLDER = 'static/uploads/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Загрузка модели
-model_path = 'car_classifier_model.h5'  # Укажите путь к вашей модели
+model_path = 'saved_model/my_model.keras'  # Замените на путь к вашей модели Keras
 car_classifier = CarClassifier(model_path, num_classes=3)  # Замените на количество классов
 
 # Загрузка классов
